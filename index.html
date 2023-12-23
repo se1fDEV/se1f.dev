@@ -34,6 +34,32 @@
         a:hover {
             text-decoration: underline;
         }
+
+        #typed-items {
+            font-size: 24px; /* Make the text bigger */
+            white-space: nowrap; /* Prevent line break */
+            overflow: hidden; /* Hide the overflowed text */
+            border-right: 1px solid #00ff00; /* Create a typing cursor */
+            animation: typing 2s steps(20, end), blink-caret 0.5s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes blink-caret {
+            from, to {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #00ff00;
+            }
+        }
     </style>
 </head>
 <body>
@@ -41,7 +67,8 @@
     <p>Sorry, this page is still under construction. The matrix is being optimized. Check back soon for a cybernetic experience!</p>
     <br>
     <h2>About Me</h2>
-    <p>Greetings, fellow netizens! I am a DevOps specialist, weaving through the digital realms. My passion extends to cybersecurity, and I constantly seek life hacks to fortify my existence.</p>
+    <p><span id="typed-items">I am a DevOps</span>
+    <p> My passion extends to cybersecurity, and I constantly seek life hacks to fortify my existence.</p>
     <p>Currently, I'm preparing material to share my achievements, both in the professional realm and the pursuit of a healthier lifestyle. Join me on this quest for knowledge and self-improvement. Let's hack life together!</p>
     <br>
     <p>Stay tuned for updates, and feel free to <a href="mailto:alex@se1f.dev">alex@se1f.dev</a> for a virtual chat!</p>
