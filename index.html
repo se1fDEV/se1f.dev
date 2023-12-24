@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <title>Se1f.dev - Alex B.</title>
     <style>
         body {
             font-family: 'Courier New', monospace;
@@ -24,6 +24,8 @@
         h2 {
             color: #00ff00;
             margin-top: 30px;
+            font-size: 37px; /* Make the typed text bigger */
+
         }
 
         a {
@@ -36,24 +38,24 @@
         }
 
         #typed-items {
-            font-size: 36px; /* Make the typed text bigger */
             display: inline-block;
         }
     </style>
 </head>
 <body>
-    <h1>Under Construction</h1>
-    <p>Sorry, this page is still under construction. The matrix is being optimized. Check back soon for a cybernetic experience!</p>
+    <h1> Alex B. - self.Developer<h1>
     <br>
-    <h2>About Me</h2>
-    <p><span id="typed-items">I am a </span><span id="typing-text"></span></p>
-    <p> specialist, weaving through the digital realms. My passion extends to cybersecurity, and I constantly seek life hacks to fortify my existence.</p>
-    <p>Currently, I'm preparing material to share my achievements, both in the professional realm and the pursuit of a healthier lifestyle. Join me on this quest for knowledge and self-improvement. Let's hack life together!</p>
+    <h2><p><span id="typed-items">I am a </span><span id="typing-text"></span></p></h2>
+    <p>main() passion extends to <b>cybersecurity</b>, and I constantly seek life hacks to fortify my existence.</p>
+    <p>Join me on this quest for knowledge and self-development. Let's hack life together!</p>
     <br>
-    <p>Stay tuned for updates, and feel free to <a href="mailto:alex@se1f.dev">alex@se1f.dev</a> for a virtual chat!</p>
+    <p>Stay tuned for updates in my social media...</p>
+    <br>    
+    <p>Feel free to <i><a href="mailto:alex@se1f.dev">alex@se1f.dev</a></i> for a virtual chat!</p>
 
     <script>
-        const typedItems = ["Booklover", "DevOps", "Developer", "DevSecOps", "Hacker", "Health enthusiast", "Pentester", "Poindexter", "Project Blueprint adept"];
+        const typedItems = [" Hacker & Pentester", " Game Developer | Indie", " Booklover", " 'Project Blueprint' adept",  
+                            " DevSecOps", " Video Gamer Geek.", " Poindexter", " Health-live enthusiast" ];
         const typedItemElement = document.getElementById("typed-items");
         const typingTextElement = document.getElementById("typing-text");
         let currentTypedItemIndex = 0;
@@ -66,12 +68,12 @@
             if (isErasing) {
                 if (currentText.length > 0) {
                     typingTextElement.textContent = currentText.slice(0, -1);
-                    setTimeout(typeAndErase, 100); // Longer pause when erasing
+                    setTimeout(typeAndErase, 25); // Longer pause when erasing
                 } else {
                     isErasing = false;
                     currentTypedItemIndex = (currentTypedItemIndex + 1) % typedItems.length;
                     currentTypedItem = typedItems[currentTypedItemIndex];
-                    setTimeout(typeAndErase, 1000); // Longer pause before typing next word
+                    setTimeout(typeAndErase, 300); // Longer pause before typing next word
                 }
             } else {
                 if (currentText.length < currentTypedItem.length) {
@@ -79,7 +81,7 @@
                     setTimeout(typeAndErase, 100); // Longer pause when typing
                 } else {
                     isErasing = true;
-                    setTimeout(typeAndErase, 1000); // Longer pause before erasing
+                    setTimeout(typeAndErase, 2500); // Longer pause before erasing
                 }
             }
         }
