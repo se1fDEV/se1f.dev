@@ -25,42 +25,94 @@
             color: #00ff00;
             margin-top: 30px;
             font-size: 37px; /* Make the typed text bigger */
-
         }
 
         a {
             color: #00ff00;
             text-decoration: none;
+            transition: color 4s ease; /* Add a transition effect for text color */
+        }
+
+        a.highlighted {
+            color: #ff0000; /* Change the text color to red when highlighted */
         }
 
         a:hover {
             text-decoration: underline;
         }
 
-        #typed-items {
-            display: inline-block;
+        /* Blinking cursor animation */
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to {
+                border-right: 2px solid transparent; /* Create a cursor effect */
+            }
+            50% {
+                border-right: 2px solid #00ff00;
+            }
+        }
+
+        /* Center-align and increase the size of the list items */
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        li {
+            font-size: 24px; /* Make the list items bigger */
+            margin: 10px 0;
         }
     </style>
 </head>
 <body>
-    <h1> Alex B. - self.Developer<h1>
+    <h1> Alex B. - self.Developer</h1>
     <br>
-    <h2><p><span id="typed-items">I am a </span><span id="typing-text"></span></p></h2>
-    <p>main() passion extends to <b>cybersecurity</b>, and I constantly seek life hacks to fortify my existence.</p>
-    <p>Join me on this quest for knowledge and self-development. Let's hack life together!</p>
+    <h2>
+        <p><span id="typed-items">I am a </span><span id="typing-text" class="blinking-cursor"></span></p>
+    </h2>
+    <ul>
+        <li><a id="cybersecurity-link" href="cyber_security.html" class="highlighted" >Cyber Security </a></li>
+        <li><a id="hobby-link" href="hobby.html">Hobby</a></li>
+        <li><a id="books-link" href="books.html">Books</a></li>
+        <li><a id="longevity-link" href="longevity.html">Longevity</a></li>
+    </ul>
+    <br>
+    <p><b>main()</b> passion extends to <b><a id="cybersecurity-link" href="cyber_security.html">cybersecurity</b></a>
+    <p>I constantly seek life hacks to fortify my existence</p>
+    <p>Join me on this quest for knowledge and <b>self-development</b> </p>
+    <p>Let's hack life together!</p>
     <br>
     <p>Stay tuned for updates in my social media...</p>
     <br>    
     <p>Feel free to <i><a href="mailto:alex@se1f.dev">alex@se1f.dev</a></i> for a virtual chat!</p>
 
     <script>
-        const typedItems = [" Hacker & Pentester", " Game Developer | Indie", " Booklover", " 'Project Blueprint' adept",  
-                            " DevSecOps", " Video Gamer Geek.", " Poindexter", " Health-live enthusiast" ];
+        const typedItems = [" Hacker & Pentester", " Indie Game Developer", " Book lover", " Longevity enthusiast",  
+                            " DevSecOps", " Indie Mobile Develope", " Bookworm", " Health-live adept" ];
         const typedItemElement = document.getElementById("typed-items");
         const typingTextElement = document.getElementById("typing-text");
+        const links = document.querySelectorAll('ul a');
         let currentTypedItemIndex = 0;
         let currentTypedItem = typedItems[0];
         let isErasing = false;
+
+        function highlightLink(linkIndex) {
+            // Calculate the correct link index
+            const numLinks = links.length;
+            const correctLinkIndex = (linkIndex + numLinks) % numLinks;
+
+            // Remove 'highlighted' class from all links
+            links.forEach(link => {
+            link.classList.remove('highlighted');
+        });
+
+            // Highlight the specified link
+            links[correctLinkIndex].classList.add('highlighted');
+        }
 
         function typeAndErase() {
             const currentText = typingTextElement.textContent;
@@ -73,7 +125,8 @@
                     isErasing = false;
                     currentTypedItemIndex = (currentTypedItemIndex + 1) % typedItems.length;
                     currentTypedItem = typedItems[currentTypedItemIndex];
-                    setTimeout(typeAndErase, 300); // Longer pause before typing next word
+                    highlightLink(currentTypedItemIndex); // Highlight link based on typed item
+                    setTimeout(typeAndErase, 400); // Longer pause before typing next word
                 }
             } else {
                 if (currentText.length < currentTypedItem.length) {
