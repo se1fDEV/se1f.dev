@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber_security</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #121212;
+            color: #00ff00;
+            text-align: left;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #00ff00;
+        }
+
+        p {
+            color: #00ff00;
+        }
+
+        ul {
+            color: #00ff00;
+        }
+
+        a {
+            color: #00ff00;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 255, 0, 0.5); /* Light underline */
+            transition: border-bottom-color 0.3s; /* Smooth transition for the underline */
+        }
+
+        a:hover {
+            border-bottom-color: #00ff00; /* Changes the underline color on hover */
+        }
+
+        
+
+
+        #blinking-cursor {
+            animation: blink-animation 1s steps(2, start) infinite;
+            opacity: 1;
+            font-weight: 100;
+        }
+
+        #toggleButton {
+            opacity: 0.2;
+            transition: opacity 0.8s ease-in-out; /* Smooth transition for opacity */
+
+        }
+
+        #toggleButton:hover {
+            opacity: 0.8;
+        }
+
+        @keyframes blink-animation {
+            to {
+                opacity: 0;
+            }
+        }
+
+        .typing {
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .typing::after {
+            content: '|';
+            color: #00ff00;
+            animation: blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { color: transparent }
+            50% { color: #00ff00; }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Cyber_security<span id="blinking-cursor">|</span></h1>
+    <p>Currently, I'm rockin' it as a D3vS3c0ps ninja @ <a href="https://gr8.tech">gr8.tech</a></p>
+    <p>The main range of my tasks:</p>
+    <ul id="cybersecurity-list">
+        <!-- Placeholder for dynamic content -->
+    </ul>
+    <!-- Add the button and JavaScript to toggle the text -->
+    <button id="toggleButton">Please show in human language</button>
+    <p>Digital Dojos where I level up my cyber skills:</p>
+    <ul>
+        <li><a href="https://app.hackthebox.com/profile/519935">HackTheBox/se1fDev
+        <script src="https://www.hackthebox.eu/badge/519935"></script></a></li>
+        <li><a href="https://tryhackme.com/p/se1fDev">TryHackMe/se1fDev <br>
+        <script src="https://tryhackme.com/badge/378630"></script></a></li>
+
+    </ul>
+    
+
+
+    <script>
+        const cybersecurityList = document.getElementById("cybersecurity-list");
+        const hackerStyleText = [
+            "Fusing dev, sec, and ops for an impenetrable digital fortress",
+            "Scanning and fortifying systems against digital threats",
+            "Mastering the digital security ops, like a true cyber guardian",
+            "Upgrading defenses to autopilot mode (cause while manuals matter, they often feel ancient in our fast-paced cyber realm) - more controls, less chaos",
+            "Collaboration with developers to create new programs that correct bottlenecks in the current security program, add countermeasures to prevent new threats",
+            "Keeping the company's digital data safe through monitoring, programming, and testing"
+        ];
+
+        const humanReadableText = [
+            "Bring development, security, operations together to create a more robust security system",
+            "Test and monitor corporate systems for vulnerabilities",
+            "Control and management of digital security operations",
+            "Automation of security controls",
+            "Collaboration with developers to create new programs that correct bottlenecks in the current security program, add countermeasures to prevent new threats",
+            "Keeping the company's digital data safe through monitoring, programming, and testing"
+        ];
+
+        let isHackerStyleVisible = true;
+
+        const toggleButton = document.getElementById("toggleButton");
+
+        function typeText(element, text, index, callback) {
+            if (index < text.length) {
+                element.textContent = text.substring(0, index + 1);
+                setTimeout(() => typeText(element, text, index + 1, callback), 10); // Reduced delay for faster typing
+            } else {
+                element.classList.remove('typing'); // Remove typing class after completion
+                if (callback) callback();
+            }
+        }
+
+        toggleButton.addEventListener("click", function() {
+            toggleButton.style.display = 'none'; // Hide the button when typing starts
+
+            const items = isHackerStyleVisible ? humanReadableText : hackerStyleText;
+            cybersecurityList.innerHTML = ''; // Clear the list
+            let index = 0;
+
+            function processNextItem() {
+                if (index < items.length) {
+                    const li = document.createElement('li');
+                    li.className = 'typing';
+                    cybersecurityList.appendChild(li);
+                    typeText(li, items[index], 0, () => {
+                        index++;
+                        processNextItem();
+                    });
+                } else {
+                    toggleButton.textContent = isHackerStyleVisible ? "Switch back to hacker style" : "Please show in human language";
+                    isHackerStyleVisible = !isHackerStyleVisible;
+                    toggleButton.style.display = ''; // Show the button again when typing is complete
+                }
+            }
+
+            processNextItem();
+        });
+
+
+        // Initially, show hacker-style text
+        cybersecurityList.innerHTML = hackerStyleText.map(text => `<li>${text}</li>`).join("");
+    </script>
+</body>
+</html>
